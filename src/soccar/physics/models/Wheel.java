@@ -8,8 +8,8 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.joints.PrismaticJointDef;
 import org.jbox2d.dynamics.joints.RevoluteJointDef;
-import soccar.physics.enumerations.ThrottleAction;
 import soccar.physics.Game;
+import soccar.physics.enumerations.ThrottleAction;
 
 public class Wheel {
 
@@ -57,13 +57,6 @@ public class Wheel {
             jd.lowerTranslation = jd.upperTranslation = 0;
             Game.WORLD.createJoint(jd);
         }
-    }
-
-    /**
-     * Sets wheel's angle relative to the car's body (in degrees).
-     */
-    public void setAngle(float angle) {
-        body.m_sweep.a = carBody.getAngle() + angle;
     }
 
     /**
@@ -147,6 +140,13 @@ public class Wheel {
 
     public double getAngle() {
         return Math.toDegrees(body.getAngle());
+    }
+
+    /**
+     * Sets wheel's angle relative to the car's body (in degrees).
+     */
+    public void setAngle(float angle) {
+        body.m_sweep.a = carBody.getAngle() + angle;
     }
 
 }

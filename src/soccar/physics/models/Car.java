@@ -5,9 +5,9 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
-import soccar.physics.enumerations.ThrottleAction;
-import soccar.physics.enumerations.SteerAction;
 import soccar.physics.Game;
+import soccar.physics.enumerations.SteerAction;
+import soccar.physics.enumerations.ThrottleAction;
 
 /**
  * Four-wheeled vehicle's representation.

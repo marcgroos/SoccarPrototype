@@ -1,7 +1,6 @@
 package soccar.physics.models;
 
 import org.jbox2d.collision.shapes.PolygonShape;
-import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
@@ -17,7 +16,7 @@ public class Wall implements Updateable {
     private float width;
     private float height;
 
-    public Wall(float x, float y, float width, float height) {
+    public Wall(float x, float y, float width, float height, float angle) {
 
         this.width = width;
         this.height = height;
@@ -31,6 +30,7 @@ public class Wall implements Updateable {
 
         BodyDef bd = new BodyDef();
         bd.position.set(x, y);
+        bd.angle = (float) Math.toRadians(angle);
 
         body = Game.WORLD.createBody(bd);
         body.createFixture(fd);
@@ -54,6 +54,10 @@ public class Wall implements Updateable {
 
     public float getHeight() {
         return height;
+    }
+
+    public double getAngle() {
+        return Math.toDegrees(body.getAngle());
     }
 
     @Override

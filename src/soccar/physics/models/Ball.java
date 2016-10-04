@@ -1,7 +1,6 @@
 package soccar.physics.models;
 
 import org.jbox2d.collision.shapes.CircleShape;
-import org.jbox2d.collision.shapes.ShapeType;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -32,7 +31,7 @@ public class Ball implements Updateable {
         // Create a fixture for ball
         FixtureDef fd = new FixtureDef();
         fd.shape = cs;
-        fd.density = 1.0f;
+        fd.density = 1.5f;
         fd.friction = 1.0f;
         fd.restitution = 1.0f;
 
