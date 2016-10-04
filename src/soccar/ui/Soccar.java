@@ -60,7 +60,7 @@ public class Soccar extends Application {
 
 
         // Create car
-        float carWidth = 5.5f;
+        float carWidth = 5.0f;
         float carHeight = carWidth * 47 / 20;
         float tireWidth = carWidth / 5;
         float tireHeight = tireWidth * 2;

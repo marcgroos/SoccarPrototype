@@ -47,7 +47,7 @@ public class Car implements Updateable {
         shape.setAsBox(width / 2, height / 2);
 
         FixtureDef fd = new FixtureDef();
-        fd.density = 1.5f;
+        fd.density = 2.0f;
         fd.friction = 0.5f;
         fd.restitution = 0.5f;
         fd.shape = shape;

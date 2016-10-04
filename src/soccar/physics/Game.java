@@ -30,15 +30,13 @@ public class Game {
     // Car attributes
     public static final int CAR_MAX_SPEED = 10;
     public static final int CAR_MAX_REVERSE_SPEED = 10;
-    public static final int CAR_POWER = 40;
+    public static final int CAR_POWER = 80;
 
     // Car wheel attributes
     public static final int WHEEL_MAX_STEER_ANGLE = 25;
-    public static final int WHEEL_MAX_TURN_IN_MS = 200;
+    public static final int WHEEL_MAX_TURN_IN_MS = 100;
 
     // Instance vars
-    private World world;
-
     private ArrayList<Updateable> entities;
     private ArrayList<Drawable> drawables;
     private GraphicsContext gc;
