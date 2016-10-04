@@ -48,18 +48,18 @@ public class Car implements Updateable {
 
         FixtureDef fd = new FixtureDef();
         fd.density = 1.0f;
-        fd.friction = 0.3f;
-        fd.restitution = 0.4f;
+        fd.friction = 0.5f;
+        fd.restitution = 0.5f;
         fd.shape = shape;
 
         this.body = Game.WORLD.createBody(bd);
         this.body.createFixture(fd);
 
         // Create wheels
-        this.frontLWheel = new Wheel(-4.8f, 4f, wheelWidth, wheelDiameter, true, body);
-        this.frontRWheel = new Wheel(4.8f, 4f, wheelWidth, wheelDiameter, true, body);
-        this.backLWheel = new Wheel(-4.8f, -4f, wheelWidth, wheelDiameter, false, body);
-        this.backRWheel = new Wheel(4.8f, -4f, wheelWidth, wheelDiameter, false, body);
+        this.frontLWheel = new Wheel(-width / 2.3f, height / 4f, wheelWidth, wheelDiameter, true, body);
+        this.frontRWheel = new Wheel(width / 2.3f, height / 4f, wheelWidth, wheelDiameter, true, body);
+        this.backLWheel = new Wheel(-width / 2.3f, -height / 4f, wheelWidth, wheelDiameter, false, body);
+        this.backRWheel = new Wheel(width / 2.3f, -height / 4f, wheelWidth, wheelDiameter, false, body);
     }
 
     @Override

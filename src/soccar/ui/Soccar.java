@@ -29,22 +29,8 @@ import soccar.physics.Game;
  */
 public class Soccar extends Application {
 
-    private List<Wall> walls;
-    private List<Ball> balls;
-    private List<soccar.ui.models.Ball> ballsUi;
-    private List<soccar.ui.models.Wall> wallsUi;
-    private Car car;
-    private soccar.ui.models.Car carUi;
-
-    public ThrottleAction a = ThrottleAction.IDLE;
-    public SteerAction s = SteerAction.NONE;
-
     @Override
     public void start(Stage primaryStage) throws Exception {
-        balls = new ArrayList<>();
-        ballsUi = new ArrayList<>();
-        walls = new ArrayList<>();
-        wallsUi = new ArrayList<>();
 
         // Stage settings
         primaryStage.setTitle("Soccar - Physics Prototype");
@@ -60,12 +46,17 @@ public class Soccar extends Application {
         Game game = new Game(gc);
 
         // Create ball
-        Ball ball = new Ball(50, 65, 4);
+        Ball ball = new Ball(50, 80, 4);
         game.addEntity(ball);
         game.addDrawable(new soccar.ui.models.Ball(ball));
 
         // Create car
-        Car car = new Car(50, 50, 10, 15, 0, 1.5f, 5);
+        float carWidth = 6.0f;
+        float carHeight = carWidth * 47 / 20;
+        float tireWidth = carWidth / 5;
+        float tireHeight = tireWidth * 2;
+
+        Car car = new Car(50, 50, carWidth, carHeight, 0, tireWidth, tireHeight);
         game.addEntity(car);
         game.addDrawable(new soccar.ui.models.Car(car));
 

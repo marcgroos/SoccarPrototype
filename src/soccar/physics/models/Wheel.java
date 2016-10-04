@@ -100,9 +100,6 @@ public class Wheel {
         Vec2 currentForwardNormal = body.getWorldVector(new Vec2(0, 1));
         float currentSpeed = Vec2.dot(getForwardVelocity(), currentForwardNormal);
 
-        System.out.println(currentSpeed);
-        System.out.println(body.getPosition());
-
         float force = 0;
 
         if (desiredSpeed > currentSpeed)
@@ -140,12 +137,12 @@ public class Wheel {
         return height;
     }
 
-    public float getCurrentX() {
-        return body.getWorldCenter().x;
+    public float getX() {
+        return body.getPosition().x;
     }
 
-    public float getCurrentY() {
-        return body.getWorldCenter().y;
+    public float getY() {
+        return body.getPosition().y;
     }
 
     public double getAngle() {

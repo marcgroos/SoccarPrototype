@@ -1,6 +1,7 @@
 package soccar.ui.models;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import soccar.physics.Utility;
 import soccar.physics.models.Wheel;
@@ -15,6 +16,7 @@ public class Car implements Drawable {
     private final soccar.physics.models.Wheel frontRWheel;
     private final soccar.physics.models.Wheel backLWheel;
     private final soccar.physics.models.Wheel backRWheel;
+    private final Image carImage = new Image("red-car.png");
 
     public Car(soccar.physics.models.Car car) {
         this.car = car;
@@ -22,6 +24,7 @@ public class Car implements Drawable {
         this.frontRWheel = car.getFrontRWheel();
         this.backLWheel = car.getBackLWheel();
         this.backRWheel = car.getBackRWheel();
+
     }
 
     @Override
@@ -47,12 +50,11 @@ public class Car implements Drawable {
         float y = Utility.toPixelY(car.getY());
 
         gc.save(); // Save the canvas so we can draw a rotated rectangle
-
         gc.translate(x, y); // Set the origin point of the rotation
         gc.rotate(-car.getAngle()); // Set the angle of the rotation
-        gc.setFill(Color.RED);
-        gc.fillRect(-width / 2, -height / 2, width, height); // Draw the rectangle from the top left
-
+//        gc.setFill(Color.RED);
+//        gc.fillRect(-width / 2, -height / 2, width, height); // Draw the rectangle from the top left
+        gc.drawImage(carImage, -width / 2, -height / 2, width, height); // Draw the rectangle from the top left
         gc.restore(); // Restore canvas to display a rotated image
     }
 
@@ -61,14 +63,14 @@ public class Car implements Drawable {
         float width = Utility.toPixelWidth(wheel.getWidth());
         float height = Utility.toPixelHeight(wheel.getHeight());
 
-        float x = Utility.toPixelX(wheel.getCurrentX());
-        float y = Utility.toPixelY(wheel.getCurrentY());
+        float x = Utility.toPixelX(wheel.getX());
+        float y = Utility.toPixelY(wheel.getY());
 
         gc.save();
 
         gc.translate(x, y); // Set the origin point of the rotation
         gc.rotate(-wheel.getAngle()); // Set the angle of the rotation
-        gc.setFill(Color.GREY);
+        gc.setFill(Color.grayRgb(50));
         gc.fillRect(-width / 2, -height / 2, width, height); // Draw the rectangle from the top left
 
         gc.restore();

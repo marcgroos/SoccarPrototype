@@ -24,7 +24,7 @@ public class Wall implements Drawable {
         float x = Utility.toPixelX(wall.getX()) - width / 2;
         float y = Utility.toPixelY(wall.getY()) - height / 2;
 
-        gc.setFill(Color.BLUE);
+        gc.setFill(Color.DARKCYAN);
         gc.fillRect(x, y, width, height); // Draw the rectangle from the top left
     }
 

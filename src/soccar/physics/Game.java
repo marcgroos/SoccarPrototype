@@ -1,6 +1,7 @@
 package soccar.physics;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 import soccar.physics.models.Ball;
@@ -30,7 +31,7 @@ public class Game {
     // Car attributes
     public static final int CAR_MAX_SPEED = 10;
     public static final int CAR_MAX_REVERSE_SPEED = 10;
-    public static final int CAR_POWER = 80;
+    public static final int CAR_POWER = 50;
 
     // Car wheel attributes
     public static final int WHEEL_MAX_STEER_ANGLE = 25;
@@ -56,7 +57,8 @@ public class Game {
         // Set iteration count 8 for velocity and 3 for positions
         Game.WORLD.step(1.0f / Game.FPS, 6, 3);
 
-        gc.clearRect(0, 0, Game.WIDTH, Game.HEIGHT);
+        gc.setFill(Color.LIGHTGREY);
+        gc.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 
         entities.forEach(Updateable::update);
         drawables.forEach(d -> d.draw(gc));
@@ -69,22 +71,22 @@ public class Game {
     private void addWalls() {
 
         // Create left wall
-        Wall wall1 = new Wall(2.5f, 50, 5, 100);
+        Wall wall1 = new Wall(1f, 50, 2, 100);
         entities.add(wall1);
         drawables.add(new soccar.ui.models.Wall(wall1));
 
         // Create right wall
-        Wall wall2 = new Wall(97.5f, 50, 5, 100);
+        Wall wall2 = new Wall(99f, 50, 2, 100);
         entities.add(wall2);
         drawables.add(new soccar.ui.models.Wall(wall2));
 
         // Create top wall
-        Wall wall3 = new Wall(50, 97.5f, 100, 5);
+        Wall wall3 = new Wall(50, 99f, 100, 2);
         entities.add(wall3);
         drawables.add(new soccar.ui.models.Wall(wall3));
 
         // Create bottom wall
-        Wall wall4 = new Wall(50, 2.5f, 100, 5);
+        Wall wall4 = new Wall(50, 1f, 100, 2);
         entities.add(wall4);
         drawables.add(new soccar.ui.models.Wall(wall4));
     }

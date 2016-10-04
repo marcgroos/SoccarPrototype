@@ -1,6 +1,7 @@
 package soccar.physics.models;
 
 import org.jbox2d.collision.shapes.CircleShape;
+import org.jbox2d.collision.shapes.ShapeType;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -26,13 +27,13 @@ public class Ball implements Updateable {
         bd.position.set(x, y);
 
         CircleShape cs = new CircleShape();
-        cs.m_radius = radius; //We need to convert radius to JBox2D equivalent
+        cs.m_radius = radius;
 
         // Create a fixture for ball
         FixtureDef fd = new FixtureDef();
         fd.shape = cs;
         fd.density = 1.0f;
-        fd.friction = 0;
+        fd.friction = 1.0f;
         fd.restitution = 1.0f;
 
         body = Game.WORLD.createBody(bd);
@@ -47,7 +48,7 @@ public class Ball implements Updateable {
         body.applyLinearImpulse(impulse, body.getWorldCenter());
 
         // Angular velocity
-        body.applyAngularImpulse(0.1f * body.getInertia() * -body.getAngularVelocity());
+        body.applyAngularImpulse(body.getInertia() / 100 * -body.getAngularVelocity());
 
 //        // Forward velocity
 //        Vec2 currentForwardNormal = getForwardVelocity();
@@ -76,4 +77,7 @@ public class Ball implements Updateable {
         this.radius = radius;
     }
 
+    public double getAngle() {
+        return Math.toDegrees(body.getAngle());
+    }
 }
