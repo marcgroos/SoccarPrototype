@@ -28,9 +28,9 @@ public class Game {
     public static final int MS_PER_FRAME = 1000 / FPS;
 
     // Car attributes
-    public static final int CAR_MAX_SPEED = 8;
+    public static final int CAR_MAX_SPEED = 10;
     public static final int CAR_MAX_REVERSE_SPEED = 10;
-    public static final int CAR_POWER = 50;
+    public static final int CAR_POWER = 40;
 
     // Car wheel attributes
     public static final int WHEEL_MAX_STEER_ANGLE = 25;

@@ -38,7 +38,7 @@ public class Wheel {
         shape.setAsBox(wheelWidth / 2, wheelDiameter / 2);
 
         FixtureDef fd = new FixtureDef();
-        fd.density = 1.0f;
+        fd.density = 0.5f;
         fd.isSensor = true; // do not include wheels in collision system (for performance)
         fd.shape = shape;
 
