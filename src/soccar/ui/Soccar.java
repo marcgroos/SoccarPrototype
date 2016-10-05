@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import soccar.io.Keyboard;
+import soccar.net.GameClient;
 import soccar.physics.Game;
 import soccar.physics.models.Ball;
 import soccar.physics.models.Car;
@@ -44,6 +45,8 @@ public class Soccar extends Application {
         // Get GC and start game
         GraphicsContext gc = canvas.getGraphicsContext2D();
         Game game = new Game(gc);
+        GameClient client = new GameClient();
+        client.connect();
 
 //         Create ball
 //        for (int i = 1; i < 5; i++) {
