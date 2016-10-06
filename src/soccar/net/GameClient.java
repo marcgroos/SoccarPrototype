@@ -16,7 +16,8 @@ import static com.esotericsoftware.minlog.Log.LEVEL_TRACE;
 public class GameClient {
 
     private Client client;
-    private String host = "192.168.178.10";
+//    private String host = "192.168.178.10";
+    private String host = "83.162.231.77";
     private int port = 9001;
 
     public GameClient() {
@@ -40,7 +41,7 @@ public class GameClient {
             client.connect(5000, host, port);
 
             listen();
-            sendPlayer();
+            sendPlayer(null);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,7 +63,7 @@ public class GameClient {
         });
     }
 
-    public void sendPlayer() {
+    public void sendPlayer(Player player) {
         Player p = new Player();
         p.name = "Marc";
         client.sendTCP(p);
