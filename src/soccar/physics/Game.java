@@ -30,7 +30,7 @@ public class Game {
     // Car attributes
     public static final int CAR_MAX_SPEED = 10;
     public static final int CAR_MAX_REVERSE_SPEED = 10;
-    public static final int CAR_POWER = 80;
+    public static final int CAR_POWER = 10;
 
     // Car wheel attributes
     public static final int WHEEL_MAX_STEER_ANGLE = 25;

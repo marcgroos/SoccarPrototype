@@ -28,6 +28,7 @@ public class Car implements Updateable {
 
     private SteerAction steerAction = SteerAction.NONE;
     private ThrottleAction throttleAction = ThrottleAction.IDLE;
+    private boolean handbrake;
 
     public Car(float x, float y, float width, float height, float angle, float wheelWidth, float wheelDiameter) {
 
@@ -39,27 +40,27 @@ public class Car implements Updateable {
         bd.type = BodyType.DYNAMIC;
         bd.position.set(x, y);
         bd.angle = (float) Math.toRadians(angle);
-        bd.linearDamping = 0.15f;   // simulates friction
         bd.bullet = true;   // prevents tunneling
-        bd.angularDamping = 0.3f;
+        bd.linearDamping = 0.2f;   // simulates friction
+        bd.angularDamping = 0.2f;
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width / 2, height / 2);
 
         FixtureDef fd = new FixtureDef();
-        fd.density = 2.0f;
-        fd.friction = 0.5f;
-        fd.restitution = 0.5f;
+        fd.density = 0.2f;
+//        fd.friction = 0.5f;
+//        fd.restitution = 0.5f;
         fd.shape = shape;
 
         this.body = Game.WORLD.createBody(bd);
         this.body.createFixture(fd);
 
         // Create wheels
-        this.frontLWheel = new Wheel(-width / 2.3f, height / 4f, wheelWidth, wheelDiameter, true, body);
-        this.frontRWheel = new Wheel(width / 2.3f, height / 4f, wheelWidth, wheelDiameter, true, body);
-        this.backLWheel = new Wheel(-width / 2.3f, -height / 4f, wheelWidth, wheelDiameter, false, body);
-        this.backRWheel = new Wheel(width / 2.3f, -height / 4f, wheelWidth, wheelDiameter, false, body);
+        this.frontLWheel = new Wheel(-width / 2.3f, height / 4f, wheelWidth, wheelDiameter, true, this);
+        this.frontRWheel = new Wheel(width / 2.3f, height / 4f, wheelWidth, wheelDiameter, true, this);
+        this.backLWheel = new Wheel(-width / 2.3f, -height / 4f, wheelWidth, wheelDiameter, false, this);
+        this.backRWheel = new Wheel(width / 2.3f, -height / 4f, wheelWidth, wheelDiameter, false, this);
     }
 
     @Override
@@ -150,5 +151,17 @@ public class Car implements Updateable {
 
     public double getAngle() {
         return Math.toDegrees(body.getAngle());
+    }
+
+    public void setHandbrake(boolean handbrake) {
+        this.handbrake = handbrake;
+    }
+
+    public boolean isHandbrake() {
+        return handbrake;
+    }
+
+    public Body getBody() {
+        return body;
     }
 }

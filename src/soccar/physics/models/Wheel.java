@@ -14,6 +14,7 @@ import soccar.physics.enumerations.ThrottleAction;
 public class Wheel {
 
     public final Body body;
+    public final Car car;
     public final Body carBody;
 
     private final float width;
@@ -22,15 +23,18 @@ public class Wheel {
     private float desiredSpeed = 0;
 
     public Wheel(float relXPos, float relYPos, float wheelWidth, float wheelDiameter,
-                 boolean steerable, Body carBody) {
+                 boolean steerable, Car car) {
 
-        this.carBody = carBody;
+        this.car = car;
+        this.carBody = car.getBody();
 
         this.width = wheelWidth;
         this.height = wheelDiameter;
 
         BodyDef bd = new BodyDef();
         bd.type = BodyType.DYNAMIC;
+        bd.angularDamping = 0.2f;
+        bd.linearDamping = 0.2f;
         bd.position = carBody.getWorldPoint(new Vec2(relXPos, relYPos));
         bd.angle = carBody.getAngle();
 
@@ -38,7 +42,7 @@ public class Wheel {
         shape.setAsBox(wheelWidth / 2, wheelDiameter / 2);
 
         FixtureDef fd = new FixtureDef();
-        fd.density = 2.0f;
+        fd.density = 1.0f;
         fd.isSensor = true; // do not include wheels in collision system (for performance)
         fd.shape = shape;
 
@@ -75,25 +79,28 @@ public class Wheel {
 
     public void updateFriction() {
 
+        float massDiv = car.isHandbrake() ? 10 : 2;
+
         // Lateral velocity
-        Vec2 impulse = getLateralVelocity().mul(-body.getMass());
+        Vec2 impulse = getLateralVelocity().mul(-body.getMass() / massDiv);
         body.applyLinearImpulse(impulse, body.getWorldCenter());
 
+
         // Angular velocity
-        body.applyAngularImpulse(0.1f * body.getInertia() * -body.getAngularVelocity());
+//        body.applyAngularImpulse(0.1f * body.getInertia() * -body.getAngularVelocity());
 
         // Forward velocity
-        Vec2 currentForwardNormal = getForwardVelocity();
-        float currentForwardSpeed = currentForwardNormal.normalize();
-        float dragForceMagnitude = -2 * currentForwardSpeed;
-        body.applyForce(currentForwardNormal.mul(dragForceMagnitude), body.getWorldCenter());
+//        Vec2 currentForwardNormal = getForwardVelocity();
+//        float currentForwardSpeed = currentForwardNormal.normalize();
+//        float dragForceMagnitude = -2 * currentForwardSpeed;
+//        body.applyForce(currentForwardNormal.mul(dragForceMagnitude), body.getWorldCenter());
     }
 
     public void updateDrive() {
         Vec2 currentForwardNormal = body.getWorldVector(new Vec2(0, 1));
         float currentSpeed = Vec2.dot(getForwardVelocity(), currentForwardNormal);
 
-        float force = 0;
+        float force;
 
         if (desiredSpeed > currentSpeed)
             force = Game.CAR_POWER * 100;

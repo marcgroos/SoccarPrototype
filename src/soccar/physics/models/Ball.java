@@ -23,6 +23,8 @@ public class Ball implements Updateable {
         //Create an JBox2D body defination for ball.
         BodyDef bd = new BodyDef();
         bd.type = BodyType.DYNAMIC;
+        bd.linearDamping = 1.0f;
+        bd.angularDamping = 1.0f;
         bd.position.set(x, y);
 
         CircleShape cs = new CircleShape();
@@ -31,7 +33,7 @@ public class Ball implements Updateable {
         // Create a fixture for ball
         FixtureDef fd = new FixtureDef();
         fd.shape = cs;
-        fd.density = 1.5f;
+        fd.density = 0.01f;
         fd.friction = 1.0f;
         fd.restitution = 1.0f;
 
@@ -43,11 +45,11 @@ public class Ball implements Updateable {
     public void update() {
 
         // Lateral velocity
-        Vec2 impulse = body.getLinearVelocity().mul(-1f);
-        body.applyLinearImpulse(impulse, body.getWorldCenter());
-
-        // Angular velocity
-        body.applyAngularImpulse(body.getInertia() / 100 * -body.getAngularVelocity());
+//        Vec2 impulse = body.getLinearVelocity().mul(-1f);
+//        body.applyLinearImpulse(impulse, body.getWorldCenter());
+//
+//        // Angular velocity
+//        body.applyAngularImpulse(body.getInertia() / 100 * -body.getAngularVelocity());
 
 //        // Forward velocity
 //        Vec2 currentForwardNormal = getForwardVelocity();

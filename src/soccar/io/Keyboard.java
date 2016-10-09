@@ -24,6 +24,8 @@ public class Keyboard {
             case D:
                 car.setSteerAction(SteerAction.STEER_RIGHT);
                 break;
+            case SPACE:
+                car.setHandbrake(true);
         }
     }
 
@@ -41,6 +43,8 @@ public class Keyboard {
             case D:
                 car.setSteerAction(SteerAction.NONE);
                 break;
+            case SPACE:
+                car.setHandbrake(false);
         }
     }
 
